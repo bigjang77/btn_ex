@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_gamf_ex/components/custom_icons_icons.dart';
 
 class BottomNavigator extends StatefulWidget {
   const BottomNavigator({Key? key}) : super(key: key);
@@ -9,8 +10,7 @@ class BottomNavigator extends StatefulWidget {
 
 class _BottomNavigatorState extends State<BottomNavigator> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -38,29 +38,30 @@ class _BottomNavigatorState extends State<BottomNavigator> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CustomIcons.joinparty, size: 25),
             label: '파티참가',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(CustomIcons.myparty),
             label: '나의 파티',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(CustomIcons.mygamf),
             label: '내 껨프',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(CustomIcons.recomgamf),
             label: '추천 껨프',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(CustomIcons.myprofile),
             label: '내 프로필',
           ),
         ],
         currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.grey[500],
+        selectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
       ),
     );
