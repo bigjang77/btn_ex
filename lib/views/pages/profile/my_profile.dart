@@ -12,33 +12,35 @@ class MyProfile extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(height: 50),
-            CircleAvatar(
-              radius: 70,
-              backgroundImage: AssetImage("assets/images/20.jpg"),
-            ),
-            SizedBox(height: 50),
-            _nickName(),
-            SizedBox(height: 50),
-            _introduce(),
-            SizedBox(height: 20),
-            InkWell(
-              onTap: () async {
-                await showDialog(context: context, builder: (_) => _imageDialog());
-              },
-              child: Image.asset("assets/images/cart1.png"),
-            ),
-            SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _updataProfile(),
-                _withdrawal(),
-              ],
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 50),
+              CircleAvatar(
+                radius: 70,
+                backgroundImage: AssetImage("assets/images/20.jpg"),
+              ),
+              SizedBox(height: 50),
+              _nickName(),
+              SizedBox(height: 20),
+              _introduce(),
+              SizedBox(height: 20),
+              InkWell(
+                onTap: () async {
+                  await showDialog(context: context, builder: (_) => _imageDialog());
+                },
+                child: Image.asset("assets/images/cart1.png"),
+              ),
+              SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _updataProfile(),
+                  _withdrawal(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigator(),
@@ -46,51 +48,21 @@ class MyProfile extends StatelessWidget {
   }
 
   Widget _withdrawal() {
-    return Container(
-      width: 120,
-      margin: EdgeInsets.all(4),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.7),
-            blurRadius: 5,
-            spreadRadius: 0,
-            offset: Offset(5, 6),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      child: Text(
-        "탈퇴",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.black),
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text("탈퇴"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kSecondaryColor,
       ),
     );
   }
 
   Widget _updataProfile() {
-    return Container(
-      width: 120,
-      margin: EdgeInsets.all(4),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.7),
-            blurRadius: 5,
-            spreadRadius: 0,
-            offset: Offset(5, 6),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      child: Text(
-        "프로필 수정",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.black),
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text("프로필 수정"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kSecondaryColor,
       ),
     );
   }
@@ -139,7 +111,7 @@ class MyProfile extends StatelessWidget {
       ),
       child: Text(
         "닉네임",
-        style: TextStyle(fontSize: 20, color: Colors.black),
+        style: TextStyle(fontSize: 15, color: Colors.black),
       ),
     );
   }

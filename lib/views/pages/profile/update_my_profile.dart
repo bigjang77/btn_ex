@@ -21,35 +21,16 @@ class _UpdateMyProfileState extends State<UpdateMyProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 50),
-            Stack(
-              children: [
-                CircleAvatar(
-                  radius: 70,
-                  backgroundImage: AssetImage("assets/images/20.jpg"),
-                ),
-                Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: InkWell(
-                      onTap: () {
-                        showModalBottomSheet(context: context, builder: (builder) => _bottomSheet());
-                      },
-                      child: Icon(
-                        Icons.camera_alt,
-                        size: 25,
-                      ),
-                    ))
-              ],
-            ),
+            _changePhoto(),
             SizedBox(height: 50),
             _nickName(),
             SizedBox(height: 50),
             _introduce(),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             _updateProfileButton(),
           ],
         ),
@@ -58,35 +39,49 @@ class _UpdateMyProfileState extends State<UpdateMyProfile> {
     );
   }
 
+  Column _changePhoto() {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            CircleAvatar(
+              radius: 70,
+              backgroundImage: AssetImage("assets/images/20.jpg"),
+            ),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(context: context, builder: (builder) => _bottomSheet());
+                  },
+                  child: Icon(
+                    Icons.camera_alt,
+                    size: 25,
+                  ),
+                ))
+          ],
+        ),
+      ],
+    );
+  }
+
   Widget _updateProfileButton() {
     return Container(
-      width: 120,
-      margin: EdgeInsets.all(4),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.7),
-            blurRadius: 5,
-            spreadRadius: 0,
-            offset: Offset(5, 6),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      child: Text(
-        "수정 완료",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.black),
+      padding: EdgeInsets.only(left: 100, right: 100),
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text("수정 완료"),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kSecondaryColor,
+        ),
       ),
     );
   }
 
   Widget _introduce() {
     return Container(
-      width: double.infinity,
-      height: 100,
+      height: 150,
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -101,18 +96,19 @@ class _UpdateMyProfileState extends State<UpdateMyProfile> {
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
       ),
-      child: Text(
-        "리그오브레전드 원딜 탑레 다이아 1 같이 듀오하실 서폿분 구합니다",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+      child: TextField(
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "자기소개를 입력하세요",
+        ),
       ),
     );
   }
 
   Widget _nickName() {
     return Container(
-      margin: EdgeInsets.all(4),
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(20),
+      padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -125,9 +121,11 @@ class _UpdateMyProfileState extends State<UpdateMyProfile> {
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
       ),
-      child: Text(
-        "닉네임",
-        style: TextStyle(fontSize: 20, color: Colors.black),
+      child: TextField(
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "닉네임을 입력하세요",
+        ),
       ),
     );
   }

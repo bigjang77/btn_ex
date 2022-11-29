@@ -11,53 +11,66 @@ class OpponentProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          children: [
-            BackButton(
-              color: Colors.black,
-            ),
-            Text("김겐지", style: TextStyle(color: Colors.black)),
-          ],
-        ),
-        actions: [
-          Icon(
-            Icons.report_gmailerrorred,
-            color: Colors.red,
-            size: 40,
-          ),
-          SizedBox(width: 15),
-        ],
-      ),
+      appBar: _appbar(),
       backgroundColor: kPrimaryColor,
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(height: 15),
-            CircleAvatar(
-              radius: 70,
-              backgroundImage: AssetImage("assets/images/41.jpg"),
-            ),
-            SizedBox(height: 10),
-            _nickName(),
-            SizedBox(height: 10),
-            _ratedStar(),
-            _introduce(),
-            SizedBox(height: 10),
-            InkWell(
-              onTap: () async {
-                await showDialog(context: context, builder: (_) => _imageDialog());
-              },
-              child: Image.asset("assets/images/cart1.png"),
-            ),
-            SizedBox(height: 10),
-            _followButton(),
-            _ratingStarButton(context),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 50),
+              _buildCircleAvatar(),
+              SizedBox(height: 50),
+              _nickName(),
+              SizedBox(height: 20),
+              _ratedStar(),
+              SizedBox(height: 20),
+              _introduce(),
+              SizedBox(height: 20),
+              InkWell(
+                onTap: () async {
+                  await showDialog(context: context, builder: (_) => _imageDialog());
+                },
+                child: Image.asset("assets/images/cart1.png"),
+              ),
+              SizedBox(height: 20),
+              _followButton(),
+              SizedBox(height: 20),
+              _ratingStarButton(context),
+              SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigator(),
+    );
+  }
+
+  CircleAvatar _buildCircleAvatar() {
+    return CircleAvatar(
+      radius: 70,
+      backgroundImage: AssetImage("assets/images/41.jpg"),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      title: Row(
+        children: [
+          BackButton(
+            color: Colors.black,
+          ),
+          Text("김겐지", style: TextStyle(color: Colors.black)),
+        ],
+      ),
+      actions: [
+        Icon(
+          Icons.report_gmailerrorred,
+          color: Colors.red,
+          size: 40,
+        ),
+        SizedBox(width: 15),
+      ],
     );
   }
 
@@ -82,7 +95,7 @@ class OpponentProfile extends StatelessWidget {
         children: [
           Text(
             "평균별점",
-            style: TextStyle(fontSize: 20, color: Colors.black),
+            style: TextStyle(fontSize: 15, color: Colors.black),
           ),
           SizedBox(width: 20),
           _ratingBar(),
@@ -96,29 +109,22 @@ class OpponentProfile extends StatelessWidget {
       onPressed: () {
         showDialog(context: context, builder: (_) => _ratingStar(context));
       },
-      child: Text(
-        "별점 주기",
-        style: TextStyle(color: Colors.black),
-      ),
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+      child: Text("별점 주기"),
+      style: ElevatedButton.styleFrom(backgroundColor: kSecondaryColor),
     );
   }
 
   ElevatedButton _followButton() {
     return ElevatedButton(
       onPressed: () {},
-      child: Text(
-        "팔로우하기",
-        style: TextStyle(color: Colors.black),
-      ),
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+      child: Text("팔로우하기"),
+      style: ElevatedButton.styleFrom(backgroundColor: kSecondaryColor),
     );
   }
 
   Widget _introduce() {
     return Container(
       width: double.infinity,
-      height: 100,
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -173,7 +179,7 @@ Widget _ratingBar() {
       color: Colors.amber,
     ),
     itemCount: 5,
-    itemSize: 50.0,
+    itemSize: 40.0,
     direction: Axis.horizontal,
   );
 }
